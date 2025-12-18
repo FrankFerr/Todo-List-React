@@ -4,6 +4,11 @@ import { ColorScheme } from "../utility/Theme";
 
 export function TodoProvider({ children }){
     const [theme, setTheme] = useState("dark")
+    const [isModalOpen, setModalOpen] = useState(true)
+    
+    const onCloseModal = () => {
+        setModalOpen(false)
+    }
 
     useEffect(() => {
         document.body.style.backgroundColor = theme == "dark" ? ColorScheme.dark.body : ColorScheme.light.body
@@ -14,7 +19,7 @@ export function TodoProvider({ children }){
     }
 
     return (
-        <TodoContext.Provider value={{ theme, changeTheme }}>
+        <TodoContext.Provider value={{ theme, changeTheme, isModalOpen, onCloseModal }}>
             {children}
         </TodoContext.Provider>
     )
