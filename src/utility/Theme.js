@@ -1,0 +1,38 @@
+export const ColorScheme = {
+    dark: {
+        body: "#242424",
+        navbar: "bg-zinc-900",
+        h1: "text-white",
+        ul: "text-white",
+        button_text: "text-white",
+        bg_li: "bg-[rgba(37,73,73,0.8)]",
+        hr: "border-white",
+        list_todo_border: "border-white",
+        list_todo_shadow: "shadow-[0_0_20px_rgba(230,230,230,0.25)]",
+        new_todo_bg: "bg-zinc-700",
+        new_todo_bg_txt: "bg-zinc-800",
+        new_todo_border: "border-gray-300",
+        new_todo_ring: "ring-blue-500",
+        new_todo_text: "text-white",
+        bg_item: "bg-zinc-900",
+        text: "text-white"
+    },
+    light: {
+        body: "#dbe4e8",
+        navbar: "bg-sky-600",
+        h1: "text-gray-900",
+        ul: "text-gray-900",
+        button_text: "text-gray-900",
+        bg_li: "bg-[rgba(255,255,255,0.8)]",
+        hr: "border-black",
+        list_todo_border: "border-gray-700",
+        list_todo_shadow: "shadow-[0_0_20px_rgba(26,26,26,0.25)]",
+        new_todo_bg: "bg-sky-600",
+        new_todo_bg_txt: "bg-gray-300",
+        new_todo_border: "border-black",
+        new_todo_ring: "ring-gray-300",
+        new_todo_text: "text-black",
+        bg_item: "bg-sky-600",
+        text: "text-black"
+    }
+}
