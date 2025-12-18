@@ -12,11 +12,25 @@ import SimpleModal from "../components/SimpleModal"
 function LaMiaGiornata(){
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todos.value)
-    const { theme, isModalOpen, onCloseModal } = useTodo()
+    const { 
+        theme, 
+        isWelcomeModalOpen, 
+        onCloseWelcomeModal, 
+        closeTodoModal,
+        openTodoModal,
+        isTodoModalOpen,
+        isOnLimit
+    } = useTodo()
+
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
 
-
     const addTodo = (todoText) => {
+
+        if(isOnLimit()){
+            openTodoModal()
+            return null
+        }
+
         const id = Math.floor(Math.random() * 1000)
 
         // const todoItem = new Todo(id, todoText, false, false)
@@ -32,7 +46,11 @@ function LaMiaGiornata(){
 
     return (
         <>
-            <SimpleModal isOpen={isModalOpen} onClose={onCloseModal}>
+            <SimpleModal isOpen={isTodoModalOpen} onClose={closeTodoModal}>
+                <h1 className="text-white text-lg font-bold">Limite Todo raggiunto</h1>
+                <p className="text-white">Hai raggiunto il limite di 5 todo, non puoi aggiungerne altri</p>
+            </SimpleModal>
+            <SimpleModal isOpen={isWelcomeModalOpen} onClose={onCloseWelcomeModal}>
                 <h1 className="text-white text-lg font-bold">Benvenuto in TodoList</h1>
                 <p className="text-white">In questa versione di prova hai a disposizione 20 todo</p>
             </SimpleModal>

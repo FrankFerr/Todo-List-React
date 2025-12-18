@@ -1,13 +1,28 @@
 import { useEffect, useState } from "react";
 import { TodoContext } from "./TodoContext";
 import { ColorScheme } from "../utility/Theme";
+import { useSelector } from "react-redux";
 
 export function TodoProvider({ children }){
     const [theme, setTheme] = useState("dark")
-    const [isModalOpen, setModalOpen] = useState(true)
+    const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(true)
+    const [isTodoModalOpen, setTodoModalOpen] = useState(false)
+    const countTodo = useSelector((state) => state.todos.value.length)
     
-    const onCloseModal = () => {
-        setModalOpen(false)
+    const onCloseWelcomeModal = () => {
+        setWelcomeModalOpen(false)
+    }
+
+    const closeTodoModal = () => {
+        setTodoModalOpen(false)
+    }
+
+    const openTodoModal = () => {
+        setTodoModalOpen(true)
+    }
+    
+    const isOnLimit = () => {
+        return countTodo == 5
     }
 
     useEffect(() => {
@@ -19,7 +34,18 @@ export function TodoProvider({ children }){
     }
 
     return (
-        <TodoContext.Provider value={{ theme, changeTheme, isModalOpen, onCloseModal }}>
+        <TodoContext.Provider 
+            value={{ 
+                theme, 
+                changeTheme, 
+                isWelcomeModalOpen, 
+                onCloseWelcomeModal,
+                closeTodoModal,
+                openTodoModal,
+                isTodoModalOpen,
+                isOnLimit
+            }}
+        >
             {children}
         </TodoContext.Provider>
     )

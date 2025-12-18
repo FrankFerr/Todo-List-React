@@ -25,7 +25,7 @@ export const todoSlice = createSlice({
                     todo.isImportant = !todo.isImportant
                 }
             })
-        },
+        }
     }
 })
 
