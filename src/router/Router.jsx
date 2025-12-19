@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LaMiaGiornata from "../pages/LaMiaGiornata"
 import Importanti from "../pages/Importanti"
+import Completati from "../pages/Completati";
 
 export const router = createBrowserRouter([
     {
@@ -10,5 +11,9 @@ export const router = createBrowserRouter([
     {
         path: "/importanti",
         element: <Importanti></Importanti>
+    },
+    {
+        path: "/completati",
+        element: <Completati></Completati>
     }
 ])
