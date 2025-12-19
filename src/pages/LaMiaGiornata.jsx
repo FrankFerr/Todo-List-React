@@ -24,7 +24,7 @@ function LaMiaGiornata(){
         isOnLimit
     } = useTodo()
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
-    const [notificationVisible, setNotificationVisible] = useState(false)
+    const [isTodoAddNotificationVisible, setTodoAddNotification] = useState(false)
 
     const addTodo = (todoText) => {
 
@@ -44,12 +44,16 @@ function LaMiaGiornata(){
         }
 
         dispatch(onAdd(todoItem))
-        setNotificationVisible(true)
+        setTodoAddNotification(true)
     }
 
     return (
         <>
-            {notificationVisible && <Notifica onClose={() => setNotificationVisible(false)}>Todo aggiunto con successo</Notifica>}
+            {isTodoAddNotificationVisible && <Notifica 
+                                                onClose={() => setTodoAddNotification(false)}
+                                                bgColor={colorScheme.bg_notification_success}
+                                                textColor={colorScheme.text_notification_success}
+                                            >Todo aggiunto con successo</Notifica>}
 
             <SimpleModal isOpen={isTodoModalOpen} onClose={closeTodoModal}>
                 <h1 className="text-white text-lg font-bold">Limite Todo raggiunto</h1>

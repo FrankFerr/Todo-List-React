@@ -15,7 +15,9 @@ export const ColorScheme = {
         new_todo_ring: "ring-blue-500",
         new_todo_text: "text-white",
         bg_item: "bg-zinc-900",
-        text: "text-white"
+        text: "text-white",
+        bg_notification_success: "bg-gray-600",
+        text_notification_success: "text-white"
     },
     light: {
         body: "#dbe4e8",
@@ -33,6 +35,8 @@ export const ColorScheme = {
         new_todo_ring: "ring-gray-300",
         new_todo_text: "text-black",
         bg_item: "bg-sky-600",
-        text: "text-black"
+        text: "text-black",
+        bg_notification_success: "bg-green-700",
+        text_notification_success: "text-black"
     }
 }

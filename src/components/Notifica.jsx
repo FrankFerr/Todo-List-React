@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "../style/Notifica.css"
 
-function Notifica({ durata = 3000, onClose, children }){
+function Notifica({ durata = 3000, onClose, bgColor, textColor, children }){
     const [visibile, setVisibile] = useState(false)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function Notifica({ durata = 3000, onClose, children }){
     }, [durata, onClose])
 
     return (
-        <div className={`notifica ${visibile ? "show" : ""}`}>
+        <div className={`notifica ${visibile ? "show" : ""} py-3 px-6 ${bgColor} ${textColor} fixed top-5 right-5 rounded-md`}>
             {children}
         </div>
     )
