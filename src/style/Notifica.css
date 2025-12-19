@@ -1,0 +1,18 @@
+.notifica{
+    padding: 12px 24px;
+    background-color: dimgray;
+    color: beige;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 15px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.show{
+    opacity: 1;
+    transform: translateY(0);
+}

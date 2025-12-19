@@ -14,9 +14,9 @@ function Navbar(){
         <nav className={`${colorScheme.navbar} sidebar w-44 h-screen fixed top-0 left-0`}>
             <h1 className={`${colorScheme.h1} text-xl font-bold mt-5 mb-5`}>ToDo List</h1>
             <ul className={`${colorScheme.ul}`}>
-                <Link to={"/"}><li className={`hover:${colorScheme.bg_li}`}><FaHouse className="mr-4"/>La mia giornata</li></Link>
-                <Link to={"/importanti"}><li className={`hover:${colorScheme.bg_li}`}><FaStar className="mr-4"/>Importanti</li></Link>
-                <Link to={"/completati"}><li className={`hover:${colorScheme.bg_li}`}><BsCheckCircleFill className="mr-4"/>Completati</li></Link>
+                <Link to={"/"}><li className={`${colorScheme.bg_li}`}><FaHouse className="mr-4"/>La mia giornata</li></Link>
+                <Link to={"/importanti"}><li className={`${colorScheme.bg_li}`}><FaStar className="mr-4"/>Importanti</li></Link>
+                <Link to={"/completati"}><li className={`${colorScheme.bg_li}`}><BsCheckCircleFill className="mr-4"/>Completati</li></Link>
             </ul>
 
             <div className="flex flex-row gap-6 justify-center mt-4">

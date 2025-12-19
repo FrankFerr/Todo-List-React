@@ -8,6 +8,8 @@ import TodoItemContainer from "../components/TodoItemContainer"
 import { useTodo } from "../hook/UseTodo"
 import { ColorScheme } from "../utility/Theme"
 import SimpleModal from "../components/SimpleModal"
+import Notifica from "../components/Notifica"
+import { useState } from "react"
 
 function LaMiaGiornata(){
     const dispatch = useDispatch()
@@ -21,8 +23,8 @@ function LaMiaGiornata(){
         isTodoModalOpen,
         isOnLimit
     } = useTodo()
-
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
+    const [notificationVisible, setNotificationVisible] = useState(false)
 
     const addTodo = (todoText) => {
 
@@ -42,18 +44,23 @@ function LaMiaGiornata(){
         }
 
         dispatch(onAdd(todoItem))
+        setNotificationVisible(true)
     }
 
     return (
         <>
+            {notificationVisible && <Notifica onClose={() => setNotificationVisible(false)}>Todo aggiunto con successo</Notifica>}
+
             <SimpleModal isOpen={isTodoModalOpen} onClose={closeTodoModal}>
                 <h1 className="text-white text-lg font-bold">Limite Todo raggiunto</h1>
                 <p className="text-white">Hai raggiunto il limite di 5 todo, non puoi aggiungerne altri</p>
             </SimpleModal>
+
             <SimpleModal isOpen={isWelcomeModalOpen} onClose={onCloseWelcomeModal}>
                 <h1 className="text-white text-lg font-bold">Benvenuto in TodoList</h1>
                 <p className="text-white">In questa versione di prova hai a disposizione 20 todo</p>
             </SimpleModal>
+
             <Navbar></Navbar>
             <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>La mia giornata</h1>
             <hr className={`${colorScheme.hr} mb-4`}/>
