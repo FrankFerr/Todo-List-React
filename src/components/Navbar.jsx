@@ -1,12 +1,12 @@
 import "../style/Navbar.css"
 import { Link } from "react-router-dom"
-import { FaHouse, FaStar, FaSun, FaMoon } from "react-icons/fa6"
+import { FaHouse, FaStar, FaSun, FaMoon, FaCircleUser } from "react-icons/fa6"
 import { useTodo } from "../hook/UseTodo"
 import { ColorScheme } from "../utility/Theme"
 import { BsCheckCircleFill } from "react-icons/bs";
 
 function Navbar(){
-    const { theme, changeTheme } = useTodo()
+    const { theme, changeTheme, userId } = useTodo()
     const dropShadow = "drop-shadow-[0_0_6px_rgba(240,240,240,0.8)]"
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
 
@@ -17,6 +17,7 @@ function Navbar(){
                 <Link to={"/"}><li className={`${colorScheme.bg_li}`}><FaHouse className="mr-4"/>La mia giornata</li></Link>
                 <Link to={"/importanti"}><li className={`${colorScheme.bg_li}`}><FaStar className="mr-4"/>Importanti</li></Link>
                 <Link to={"/completati"}><li className={`${colorScheme.bg_li}`}><BsCheckCircleFill className="mr-4"/>Completati</li></Link>
+                <Link to={`/user/${userId}`}><li className={`${colorScheme.bg_li}`}><FaCircleUser className="mr-4"/>Profilo</li></Link>
             </ul>
 
             <div className="flex flex-row gap-6 justify-center mt-4">

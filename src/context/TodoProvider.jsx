@@ -8,6 +8,7 @@ export function TodoProvider({ children }){
     const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(true)
     const [isTodoModalOpen, setTodoModalOpen] = useState(false)
     const countTodo = useSelector((state) => state.todos.value.length)
+    const userId = 1
     
     const onCloseWelcomeModal = () => {
         setWelcomeModalOpen(false)
@@ -43,7 +44,8 @@ export function TodoProvider({ children }){
                 closeTodoModal,
                 openTodoModal,
                 isTodoModalOpen,
-                isOnLimit
+                isOnLimit,
+                userId
             }}
         >
             {children}
