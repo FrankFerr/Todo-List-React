@@ -5,15 +5,27 @@ import TodoItemContainer from "../components/TodoItemContainer"
 import NewTodo from "../components/NewTodo"
 import { useTodo } from "../hook/UseTodo"
 import { ColorScheme } from "../utility/Theme"
+import SimpleModal from "../components/SimpleModal"
 
 function Importanti(){
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todos.value)
-    const { theme } = useTodo()
+    const { 
+        theme, 
+        closeTodoModal,
+        openTodoModal,
+        isTodoModalOpen,
+        isOnLimit 
+    } = useTodo()
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
 
 
     const addTodo = (todoText) => {
+        if(isOnLimit()){
+            openTodoModal()
+            return null
+        }
+
         const id = Math.floor(Math.random() * 1000)
 
         // const todoItem = new Todo(id, todoText, false, false)
@@ -29,6 +41,11 @@ function Importanti(){
 
     return (
         <>
+            <SimpleModal isOpen={isTodoModalOpen} onClose={closeTodoModal}>
+                <h1 className="text-white text-lg font-bold">Limite Todo raggiunto</h1>
+                <p className="text-white">Hai raggiunto il limite di 5 todo, non puoi aggiungerne altri</p>
+            </SimpleModal>
+            
             <Navbar></Navbar>
             <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>Importanti</h1>
             <hr className={`${colorScheme.hr} mb-4`}/>
