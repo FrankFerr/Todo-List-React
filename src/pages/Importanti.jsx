@@ -6,10 +6,11 @@ import NewTodo from "../components/NewTodo"
 import { useTodo } from "../hook/UseTodo"
 import { ColorScheme } from "../utility/Theme"
 import SimpleModal from "../components/SimpleModal"
+import SearchBar from "../components/SearchBar"
+import { useState } from "react"
 
 function Importanti(){
     const dispatch = useDispatch()
-    const todos = useSelector((state) => state.todos.value)
     const { 
         theme, 
         closeTodoModal,
@@ -18,6 +19,9 @@ function Importanti(){
         isOnLimit 
     } = useTodo()
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
+    const [textFilter, setTextFilter] = useState(null)
+    let todos = useSelector((state) => state.todos.value)
+    todos = textFilter ? todos.filter((todo) => todo.text.search(textFilter) != -1) : todos
 
 
     const addTodo = (todoText) => {
@@ -38,6 +42,14 @@ function Importanti(){
 
         dispatch(onAdd(todoItem))
     }
+    
+    const onSearchBarChange = (text) => {
+        if(text.trim() == ""){
+            setTextFilter(null)
+        } else {
+            setTextFilter(text)
+        }
+    }
 
     return (
         <>
@@ -47,7 +59,11 @@ function Importanti(){
             </SimpleModal>
             
             <Navbar></Navbar>
-            <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>Importanti</h1>
+            <div className="flex flex-row justify-between">
+                <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>Importanti</h1>
+                <SearchBar handleChange={onSearchBarChange}></SearchBar>
+            </div>
+
             <hr className={`${colorScheme.hr} mb-4`}/>
 
             <div className="new-todo-container flex flex-col justify-between">

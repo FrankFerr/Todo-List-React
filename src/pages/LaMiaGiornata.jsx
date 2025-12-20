@@ -10,10 +10,10 @@ import { ColorScheme } from "../utility/Theme"
 import SimpleModal from "../components/SimpleModal"
 import Notifica from "../components/Notifica"
 import { useState } from "react"
+import SearchBar from "../components/SearchBar"
 
 function LaMiaGiornata(){
     const dispatch = useDispatch()
-    const todos = useSelector((state) => state.todos.value)
     const { 
         theme, 
         isWelcomeModalOpen, 
@@ -25,6 +25,10 @@ function LaMiaGiornata(){
     } = useTodo()
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
     const [isTodoAddNotificationVisible, setTodoAddNotification] = useState(false)
+    const [textFilter, setTextFilter] = useState(null)
+    
+    let todos = useSelector((state) => state.todos.value)
+    todos = textFilter ? todos.filter((todo) => todo.text.search(textFilter) != -1) : todos
 
     const addTodo = (todoText) => {
 
@@ -47,6 +51,14 @@ function LaMiaGiornata(){
         setTodoAddNotification(true)
     }
 
+    const onSearchBarChange = (text) => {
+        if(text.trim() == ""){
+            setTextFilter(null)
+        } else {
+            setTextFilter(text)
+        }
+    }
+
     return (
         <>
             {isTodoAddNotificationVisible && <Notifica 
@@ -66,7 +78,10 @@ function LaMiaGiornata(){
             </SimpleModal>
 
             <Navbar></Navbar>
-            <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>La mia giornata</h1>
+            <div className="flex flex-row justify-between">
+                <h1 className={`${colorScheme.h1} text-4xl font-bold mb-4 text-left`}>La mia giornata</h1>
+                <SearchBar handleChange={onSearchBarChange}></SearchBar>
+            </div>
             <hr className={`${colorScheme.hr} mb-4`}/>
 
             <div className="new-todo-container flex flex-col justify-between">
