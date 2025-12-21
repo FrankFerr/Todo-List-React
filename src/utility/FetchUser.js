@@ -12,3 +12,18 @@ export async function fetchUserData(userId){
         return {}
     }
 }
+
+export async function fetchAllUser(){
+    try{
+        const api = "https://jsonplaceholder.typicode.com/users"
+
+        const res = await fetch(api)
+        const data = await res.json()
+
+        return data
+    }
+    catch(err){
+        console.error("Problemi durante il caricamento dei dati degli utenti: ", err)
+        return {}
+    }
+}

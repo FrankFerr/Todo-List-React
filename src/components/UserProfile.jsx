@@ -1,23 +1,27 @@
 import { ColorScheme } from "../utility/Theme"
 import { useTodo } from "../hook/UseTodo"
-import { useEffect, useState } from "react"
-import { fetchUserData } from "../utility/FetchUser"
 
-function UserProfile({ userId }){
+function UserProfile({ user }){
     const { theme } = useTodo()
     const colorScheme = theme == "light" ? ColorScheme.light : ColorScheme.dark
-    const [userData, setUserData] = useState({})
     
-    useEffect(() => {
-        fetchUserData(userId).then((data) => setUserData(data))
-    }, [userId])
-
     return (
-        <div className={`h-full overflow-y-auto mb-4 rounded-2xl ${colorScheme.list_todo_border} border-2 ${colorScheme.list_todo_shadow}`}>
-            {userData.name}<br />
-            {userData.username}<br />
-            {userData.email}<br />
-        </div>
+        <>
+            <div className="w-full py-5 grid grid-cols-2 gap-y-4">
+                <div className="col-span-2">
+                    <label className={colorScheme.text} htmlFor="name">Name</label><br/>
+                    <input name="name" className={`p-2 w-2/5 ${colorScheme.bg_input} ${colorScheme.text} rounded-md border-2 ${colorScheme.border_input}`} type="text" value={user.name} readOnly></input>
+                </div>
+                <div>
+                    <label className={colorScheme.text} htmlFor="username">Username</label><br/>
+                    <input name="username" className={`p-2 w-3/4 ${colorScheme.bg_input} ${colorScheme.text} rounded-md border-2 ${colorScheme.border_input}`} type="text" value={user.username} readOnly></input>
+                </div>
+                <div>
+                    <label className={colorScheme.text} htmlFor="email">Email</label><br/>
+                    <input name="email" className={`p-2 w-3/4 ${colorScheme.bg_input} ${colorScheme.text} rounded-md border-2 ${colorScheme.border_input}`} type="text" value={user.email} readOnly></input>
+                </div>
+            </div>
+        </>
     )
 }
 

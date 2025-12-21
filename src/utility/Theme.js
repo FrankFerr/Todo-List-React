@@ -17,7 +17,11 @@ export const ColorScheme = {
         bg_item: "bg-zinc-900",
         text: "text-white",
         bg_notification_success: "bg-gray-600",
-        text_notification_success: "text-white"
+        text_notification_success: "text-white",
+        bg_select: "bg-neutral-700",
+        border_select: "border-white",
+        bg_input: "bg-zinc-700",
+        border_input: "border-white",
     },
     light: {
         body: "#dbe4e8",
@@ -37,6 +41,10 @@ export const ColorScheme = {
         bg_item: "bg-sky-600",
         text: "text-black",
         bg_notification_success: "bg-green-700",
-        text_notification_success: "text-black"
+        text_notification_success: "text-black",
+        bg_select: "bg-[#f1f1f1]",
+        border_select: "border-black",
+        bg_input: "bg-[#f1f1f1]",
+        border_input: "border-black",
     }
 }
