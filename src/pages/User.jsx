@@ -11,17 +11,16 @@ function User(){
     const [userId, setUserId] = useState(0)
     const [userData, setUserData] = useState({})
     const [userList, setUserList] = useState([])
-    const [userSelect, setUserSelect] = useState(null)
+    const [userSelect, setUserSelect] = useState(0)
     
     useEffect(() => {
-        fetchAllUser().then((data) => {
-            console.log(data)
-            setUserList(data)
-        })
+        fetchAllUser().then((data) => setUserList(data))
     }, [])
 
     useEffect(() => {
-        fetchUserData(userId).then((data) => setUserData(data))
+        if(userId != 0){
+            fetchUserData(userId).then((data) => setUserData(data))
+        }
     }, [userId])
     
     const onSelectChange = (e) => {
@@ -39,7 +38,7 @@ function User(){
                 <select className={`h-10 w-1/3 ml-4 rounded-md border-2 ${colorScheme.border_select} ${colorScheme.bg_select} ${colorScheme.text}`} value={userSelect} onChange={onSelectChange}>
                     <option  value={0}></option>
                     {
-                        userList.map((user) => <option value={user.id}>{user.name}</option>)
+                        userList.map((user) => <option key={user.id} value={user.id}>{user.name}</option>)
                     }
                 </select>
                 <UserProfile user={userData}></UserProfile>
